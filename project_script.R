@@ -194,6 +194,43 @@ df$Hour <- hour(df$created_at)
 # DELETING VARIABLES
 df <- df %>% select(-which(colnames(df) %in% c('created_at', 'is_retweet', 'id_str', 'Date')))
 
+
+# HOLIDAYS
+usholidays <- read_csv("usholidays.txt", 
+                       col_names = c('Index', 'Date', 'Holiday'))
+# It's not going to matter what holiday falls on what day - just that they are holidays. 
+# Therefore, change Holiday column to just 1
+usholidays$Holiday <- 1
+# Remove index
+usholidays <- usholidays %>% select(-Index)
+# Add in election night (11/08/16) day after election (11/09/2016), inauguration (1/20/2017), 
+# day after inauguration (1/21/2017), 9/11, new years eve, and all the major days in primary elections 
+added_holidays <- tibble('Date' = ymd(c('2015-09-11', '2016-09-11', '2017-09-11', '2018-09-11', # 9/11
+                         '2016-11-08', '2016-11-09', # Gen Election
+                         '2017-01-20', '2017-01-21', # Inauguration 
+                         '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31', # NYE
+                         '2016-03-01', '2016-03-05', '2016-03-15', # March Primaries
+                         '2016-04-26', '2016-06-07', # Other Primaries
+                         '2016-07-18', '2016-07-19', '2016-07-20', '2016-07-21' # RNC 
+                         )),
+       'Holiday' = rep(1, 21))
+
+# Add these rows to usholidays
+usholidays <- rbind(usholidays, added_holidays)
+
+# Join usholidays to df 
+df <- left_join(df, usholidays, 'Date')
+
+# Any NA values in Holiday should be changed to 0
+df$Holiday[is.na(df$Holiday)] <- 0
+
+# Out of curiosity, want to check average and median likes for holidays vs not 
+hol <- df %>% group_by(Holiday) %>% summarise('mean' = mean(favorite_count))
+ggplot(hol) + geom_bar(aes(Holiday, mean), stat = 'identity') # Same mean
+hol <- df %>% group_by(Holiday) %>% summarise('med' = median(favorite_count))
+ggplot(hol) + geom_bar(aes(Holiday, med), stat = 'identity') # Higher median non-holidays 
+
+
 m1 <- lm(favorite_count~Followers+Follower_Change+Num_Tweets+Month+Hour, data = df)
 summary(m1)
 plot(m1)
@@ -208,3 +245,4 @@ corrplot(cor_df)
 library(MASS)
 library(car)
 vif(m2)
+
