@@ -24,12 +24,15 @@ library(kableExtra)
 
 I collected and aggregated data from two different sources into two respective csvs. They can be joined based on the date. 
 
+An important note is that floating-point-precision is making later pythonic processes difficult, so rather than reading in the id of each tweet as a number, they will be strings. 
+
 ```{r, warning=FALSE, message=FALSE}
 # data regarding Trump's followers
 follows <- read_csv('~/Documents/GitHub/Trump-Twitter-Predictions/Data/trump_followers_data.csv')
 
 # data with tweets
-tweets <- read_csv('~/Documents/GitHub/Trump-Twitter-Predictions/Data/trump_tweets.csv')
+tweets <- read_csv('~/Documents/GitHub/Trump-Twitter-Predictions/Data/trump_tweets.csv', 
+                   col_types = cols(id_str = col_character()))
 # Remove rows where we don't have favorite_counts
 tweets <- tweets %>% filter(!is.na(favorite_count))
 # Remove rows where favorite count is 0
@@ -180,21 +183,12 @@ df <- left_join(df, usholidays, 'Date')
 df$Holiday[is.na(df$Holiday)] <- 0
 ```
 
-# Delete Irrelevant Rows
-
-There's no clear way to tell which tweets in this dataset were later deleted by Trump. This is a major issue as he often misspells things and then deletes them. I will at the very least delete all tweets from Trump that were liked fewer than 100 times. 
-
-```{r}
-df <- df %>% filter(favorite_count >=100)
-```
-
-
 # Delete Irrelevant Columns
 
-We don't need created_at, is_retweet, id_str, and Date. We may need retweet_count later, so I'll leave it for now. 
+I don't need created_at, is_retweet, and Date. I might need retweet_count later, so I'll leave it for now. I will also need id_str in order to get rid of tweets that have been deleted. 
 
 ```{r}
-df <- df %>% select(-which(colnames(df) %in% c('created_at', 'is_retweet', 'id_str', 'Date')))
+df <- df %>% select(-which(colnames(df) %in% c('created_at', 'is_retweet', 'Date')))
 ```
 
 I'm now prepared for extensive feature engineering. I'll conduct Part Three in Python. I'll write out the file for use there. 
