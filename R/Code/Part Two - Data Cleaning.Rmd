@@ -162,6 +162,9 @@ usholidays <- read_csv("~/Documents/GitHub/Trump-Twitter-Predictions/Data/usholi
 # Remove index
 usholidays <- usholidays %>% select(-Index)
 
+# Replace all holiday names with 1
+usholidays$Holiday <- 1
+
 # Df with added holidays 
 added_holidays <- tibble('Date' = ymd(c('2015-09-11', '2016-09-11', '2017-09-11', '2018-09-11', # 9/11
                          '2016-11-08', '2016-11-09', # Gen Election
