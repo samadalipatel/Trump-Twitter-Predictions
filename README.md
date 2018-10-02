@@ -22,3 +22,5 @@ I will need to be mindful of how I clean and wrangle my data in R and what prepr
 
 ### Note: 
 Trump would often either copy and paste people's tweets about him and comment, or simply retweet tweets about him in 2015 that got very few likes. It could be that he wasn't as popular back then, or those retweets specifically weren't as popular. I have half a mind to remove those tweets from the dataset, but I will keep them in for now to see how the models initially perform. 
+
+I utilized the Twitter API to remove any tweets that Trump chose to delete. 
