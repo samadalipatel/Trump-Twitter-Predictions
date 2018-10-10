@@ -24,3 +24,7 @@ I will need to be mindful of how I clean and wrangle my data in R and what prepr
 Trump would often either copy and paste people's tweets about him and comment, or simply retweet tweets about him in 2015 that got very few likes. It could be that he wasn't as popular back then, or those retweets specifically weren't as popular. I have half a mind to remove those tweets from the dataset, but I will keep them in for now to see how the models initially perform. 
 
 I utilized the Twitter API to remove any tweets that Trump chose to delete. 
+
+## Part Three: Feature Engineering
+
+I'm spending a lot of time learning about Natural Language Processing techniques in greater detail. Besides that, I'm relying on simply knowing about Trump and his behavioral/tweeting patterns to try and discern qualities that might improve predictaibility - for instance, whether or not he mentions Democrats in his tweets. 
