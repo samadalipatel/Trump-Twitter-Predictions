@@ -33,4 +33,4 @@ I'm spending a lot of time learning about Natural Language Processing techniques
 
 Because of the vastly non-linear nature of many of the features, I am not going to seriously consider any of sklearn's linear models. However, I quickly checked some linear models using glmnet and base R to come up with a baseline Mean Absolute Error, and arrived at an average error of about 17,000 likes with a LASSO model that did not include any of the engineered featuers. I consider 17,000 the baseline MAE for my decision tree models to beat. 
 
-Once I have sufficiently engineered all of the new features I am concerned with, I will focus on optimizing random-forest and gradient-boosted tree models. 
+Once I have sufficiently engineered all of the new features I am concerned with, I will focus on optimizing random-forest and gradient-boosted tree models. Because the data is relatively small, and I am not as well-versed in the theory, I will not attempt to use a neural net. 
