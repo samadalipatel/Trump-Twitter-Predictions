@@ -1,7 +1,7 @@
 # Trump-Twitter-Predictions
 Using ML models to try and predict how popular any given Trump Tweet is going to be. 
 
-Donald Trump, according to himself via Bob Woodward's book Fear, is "the Ernest Hemingway of Twittter." While most certainly not matching Hemingway in wit or intelligence, he is undoubtedly the most famous twitter user of all time. Trump himself studies tweets that do very well to try and take advantage of certain patterns that might improve his future tweets, and so the goal of this project is to see if we can do this via ML. 
+Donald Trump is is undoubtedly the most famous twitter user of all time. In "Fear, Trump in the White House," Bob Woodward reports that Trump himself studies tweets that do very well to try and take advantage of certain patterns that might improve his future tweets. The goal of this project is to see if we can do this via ML. 
 
 
 I will continuously update this README with information regarding what steps I have taken and what steps I am on, in addition to the dilemmas I face along the way. 
