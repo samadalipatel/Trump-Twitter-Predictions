@@ -28,3 +28,9 @@ I utilized the Twitter API to remove any tweets that Trump chose to delete.
 ## Part Three: Feature Engineering
 
 I'm spending a lot of time learning about Natural Language Processing techniques in greater detail. Besides that, I'm relying on simply knowing about Trump and his behavioral/tweeting patterns to try and discern qualities that might improve predictaibility - for instance, whether or not he mentions Democrats in his tweets. 
+
+## Part Four: Machine Learning
+
+Because of the vastly non-linear nature of many of the features, I am not going to seriously consider any of sklearn's linear models. However, I quickly checked some linear models using glmnet and base R to come up with a baseline Mean Absolute Error, and arrived at an average error of about 17,000 likes with a LASSO model that did not include any of the engineered featuers. I consider 17,000 the baseline MAE for my decision tree models to beat. 
+
+Once I have sufficiently engineered all of the new features I am concerned with, I will focus on optimizing random-forest and gradient-boosted tree models. 
