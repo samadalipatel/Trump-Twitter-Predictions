@@ -166,15 +166,17 @@ usholidays <- usholidays %>% select(-Index)
 usholidays$Holiday <- 1
 
 # Df with added holidays 
-added_holidays <- tibble('Date' = ymd(c('2015-09-11', '2016-09-11', '2017-09-11', '2018-09-11', # 9/11
+added_holidays <- tibble('Date' = ymd(c('2015-09-11', '2016-09-11', '2017-09-11', '2018-09-11',
+                                        '2019-09-11',# 9/11
                          '2016-11-08', '2016-11-09', # Gen Election
                          '2017-01-20', '2017-01-21', # Inauguration 
                          '2015-12-31', '2016-12-31', '2017-12-31', '2018-12-31', # NYE
                          '2016-03-01', '2016-03-05', '2016-03-15', # March Primaries
                          '2016-04-26', '2016-06-07', # Other Primaries
-                         '2016-07-18', '2016-07-19', '2016-07-20', '2016-07-21' # RNC 
+                         '2016-07-18', '2016-07-19', '2016-07-20', '2016-07-21', # RNC 
+                         '2017-04-16', '2018-04-01', '2019-04-21' # Easter
                          )), 
-                         'Holiday' = rep(1, 21))
+                         'Holiday' = rep(1, 25))
 
 # Add these rows to usholidays
 usholidays <- rbind(usholidays, added_holidays)
