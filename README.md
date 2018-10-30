@@ -1,26 +1,24 @@
 # Trump-Twitter-Predictions
-Using ML models to try and predict how popular any given Trump Tweet is going to be. 
 
-Donald Trump, according to himself via Bob Woodward's book Fear, is "the Ernest Hemingway of Twittter." While most certainly not matching Hemingway in wit or intelligence, he is undoubtedly the most famous twitter user of all time. Trump himself studies tweets that do very well to try and take advantage of certain patterns that might improve his future tweets, and so the goal of this project is to see if we can do this via ML. 
-
-
-I will continuously update this README with information regarding what steps I have taken and what steps I am on, in addition to the dilemmas I face along the way. 
-
+Donald Trump is is undoubtedly the most famous twitter user of all time. In "Fear: Trump in the White House," Bob Woodward reports that Trump himself studies tweets that do very well to try and take advantage of certain patterns that might improve his future tweets. The goal of this project is to see if we can do this via ML. 
 
 ## Part One: Data Collection 
 
-Part one will center all around collecting the data concerning Trump's tweet and twitter account. One option to gather data is to simply download from http://www.trumptwitterarchive.com. However, there are numerous issues with this approach as will be documented in the Part One jupyter notebook. Another is to scrape the tweets using the twitter or tweepy python package, which could be more painstaking but also offer more information to be used for feature engineering. 
-
-Additionally, information from the www.trackalytics.com offers helpful features regarding Trump's followers. 
+Training data is collected from http://www.trumptwitterarchive.com. Data concerning Trump's followers is collected from www.trackalytics.com. Testing data is acquired via the Twitter API, and thus, running this program requires the user to have their own Twitter API credentials. I chose to use Trump's tweets from 2017 and 2018 as the basis to predict his future number of likes, as 2016 and prior aren't great representations for the future. 
 
 ## Part Two: Data Cleaning
+The data from trackalytics requires some basic cleaning. I utilized the Twitter API to remove any deleted tweets from my training set. 
 
-There's not much (if anything) to clean from the trump twitter archive. However, the data collected from trackalytics needs extensive cleaning. This will most likely all be conducted in R. 
+## Part Three: Feature Engineering
+Feature engineering focused heavily on Natural Language Processing techniques, as well as having insight into Trump's general behavior and mannerisms. 
 
-I will need to be mindful of how I clean and wrangle my data in R and what preprocessing I conduct in Python, as I will be conducting all the ML there. My plan is to simply create respective scripts to handle each portion and then tie those all into a larger executable file. 
+## Part Four: Machine Learning
+Six models were considered - OLS, LASSO, Ridge, and Elastic Net Linear Regression, as well as Random Forest and Gradient Boosted Trees. Linear Models actually outperformed all tree-based models here. I took great concern to be sure that the data met the assumptions for linear models, and they surprisingly did. 
+
+## Conclusions
+In the end, I selected a BoxCox Transformed Elastic Net model - it had the second lowest mean absolute error rate with the highest R^2 value. 
+
+# To Implement: 
+If you would like to use this model for yourself, please look into the Final_Results folder. There, you will see a file detailing the simple instructions to deploy it on your own computer. 
 
 
-### Note: 
-Trump would often either copy and paste people's tweets about him and comment, or simply retweet tweets about him in 2015 that got very few likes. It could be that he wasn't as popular back then, or those retweets specifically weren't as popular. I have half a mind to remove those tweets from the dataset, but I will keep them in for now to see how the models initially perform. 
-
-I utilized the Twitter API to remove any tweets that Trump chose to delete. 
