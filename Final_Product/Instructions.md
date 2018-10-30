@@ -7,7 +7,7 @@ To run this code yourself, you must have the following packages: numpy, pandas, 
 
 2. In your terminal window/command line, navigate to the Final_Product folder and run the predict_results file. 
 
-3. Enter the following arguments: lasso_model consumer_key, consumer_secret, access_key, access_secret, num_tweets (where num_tweets represents the number of tweets you want to predict number of likes for - limit 200).
+3. Enter the following arguments: enet_model consumer_key, consumer_secret, access_key, access_secret, num_tweets (where num_tweets represents the number of tweets you want to predict number of likes for - limit 200).
 
 
 ## Example:
